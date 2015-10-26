@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <style>
+        form {
+            position: absolute;
+            top: 35%;
+            left: 40%;
+            margin-top: -50px;
+            margin-left: -50px;
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+
+</head>
+<body>
+<div>
+    <form th:action="@{/login}" method="post">
+        <div>
+            <h2>Currency application</h2>
+        </div>
+        <div>
+            <table style="width:300px">
+                <tr>
+                    <td>Login</td>
+                    <td><input type="text" name="username"/></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit">Sign In</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Don't have account?</td>
+                    <td>
+                        <a href="/register">
+                            <button type="button">Register</button>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <div th:if="${param.error}">
+                <p style="font-family: arial, helvetica, sans-serif; font-weight: bold; color:red">
+                    Invalid username or password.
+                </p>
+            </div>
+            <div th:if="${param.logout}">
+                <p style="font-family: arial, helvetica, sans-serif; font-weight: bold; color:blue">
+                    You have been logged out.
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

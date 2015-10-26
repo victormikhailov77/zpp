@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head lang="en">
+    <title></title>
+    <style>
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+        }
+
+        td, th {
+            width: 4rem;
+            height: 1rem;
+
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+        }
+
+        th {
+            background: lightblue;
+            border-color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+<body>
+
+<h3>Currency service demo</h3>
+
+<div id="currency-view" th:object="${currency}">
+    <h4>USD to selected European currency rates on today </h4>
+    <h5 th:inline="text">current user: [[${#httpServletRequest.remoteUser}]]!</h5>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+
+    <div id="datetime">
+        <table>
+            <tr>
+                <td style="font-size: 14px; font-weight: bold; width: 200px; text-align: left">Today is</td>
+                <td th:text="${today}" style="font-size: 14px; font-weight: bold; width: 200px; text-align: left"></td>
+            </tr>
+            <tr>
+                <td scope="row" style="font-size: 14px; font-weight: bold; width: 200px; text-align: left">Rate updated on</td>
+                <td th:text="${quotetime}" style="font-size: 14px; font-weight: bold; width: 200px; text-align: left"></td>
+            </tr>
+            <tr>
+                <td scope="row" style="font-size: 14px; font-weight: bold; width: 200px; text-align: left">Source currency :</td>
+                <td th:text="${source}" style="font-size: 14px; font-weight: bold; width: 200px; text-align: left"></td>
+            </tr>
+
+        </table>
+    </div>
+    <div id="rates">
+        <h4>Rates</h4>
+        <table style="border: 0px">
+            <tr th:each="sopt:${currency.rates.entrySet()}">
+                <th scope="row" th:text="${sopt.key}" style="font-weight: bold">1</th>
+                <td th:text="${sopt.value}" style="font-weight: bold; text-align: left">Text ...</td>
+            </tr>
+        </table>
+    </div>
+
+    <table>
+
+    </table>
+</div>
+
+<div id="currency-history">
+    <h4>Currency rate history for last 10 days</h4>
+
+    <div id="datetimehistory">
+        <table id="table-currency-history" style="border: 1px solid #ccc;">
+            <tr>
+                <th></th>
+                <th th:each="cur:${currencies}" th:text="*{cur}"></th>
+            </tr>
+            <tbody th:each="histItem:${history.entrySet()}">
+            <tr>
+                <th scope="row" th:text="${histItem.key}"></th>
+                <td th:each="rateEntry:${histItem.value.rates.entrySet()}" th:text="*{rateEntry.value}" style="text-align: left"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <style>
+        form {
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            margin-top: -50px;
+            margin-left: -50px;
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+        <div>
+            <h2>New user registration</h2>
+        </div>
+        <div>
+            <table style="width:300px">
+                <tr>
+                    <td>Login</td>
+                    <td><input type="text" th:field="*{userName}" name="username"/></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" th:field="*{password}" name="password"/></td>
+                </tr>
+                <tr>
+                    <td>First Name</td>
+                    <td><input type="text" th:field="*{firstName}" name="firstname"/></td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td><input type="text" th:field="*{lastName}" name="lastname"/></td>
+                </tr>
+                <tr>
+                    <td>E-Mail</td>
+                    <td><input type="text" th:field="*{email}" name="email"/></td>
+                </tr>
+                <tr>
+                    <td>Street address</td>
+                    <td><input type="text" th:field="*{street}" name="street"/></td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td><input type="text" th:field="*{city}" name="city"/></td>
+                </tr>
+                <tr>
+                    <td>State/province</td>
+                    <td><input type="text" th:field="*{state}" name="state"/></td>
+                </tr>
+                <tr>
+                    <td>Country</td>
+                    <td>
+                        <select th:field="*{country}">
+                            <option th:each="sopt:${countries.entrySet()}"
+                                    th:value="${sopt.value}" th:text="${sopt.key}">Japan</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Post code</td>
+                    <td><input type="text" th:field="*{postCode}" name="postcode"/></td>
+                </tr>
+                <tr>
+                    <td>Phone number</td>
+                    <td><input type="text" th:field="*{phone}" name="phone"/></td>
+                </tr>
+
+                <tr>
+                    <td>Don't have account?</td>
+                    <td><button type="submit">Register</button></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
