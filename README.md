@@ -1,5 +1,5 @@
 # zpp
-Demo web application for integrating currency exchange rates API
+Demo web application with login form for integrating currency exchange rates API
 
 Requirements:
 -Main page visible only to authorized users
@@ -16,7 +16,7 @@ Frameworks and libs:
 -Spring Security
 -Spring Data MongoDB
 -Thymeleaf as HTML template engine
--MongoDB for backend (user storage)
+-MongoDB for backend
 -Hibernate validation - JSR-303 validators for forms
 -Spring Rest template - for accessing APIs
 -Jackson - JSON to POJO mapping and conversion
