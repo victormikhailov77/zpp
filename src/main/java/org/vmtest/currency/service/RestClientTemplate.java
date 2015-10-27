@@ -1,4 +1,4 @@
-package org.vmtest.currency;
+package org.vmtest.currency.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;

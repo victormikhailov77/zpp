@@ -1,20 +1,18 @@
-package org.vmtest.currency.currencylayer;
+package org.vmtest.currency.service.currencylayer;
 
-import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
-import org.vmtest.currency.CurrencyRates;
-import org.vmtest.currency.CurrencyService;
-import org.vmtest.currency.RestClientTemplate;
+import org.vmtest.currency.model.CurrencyRates;
+import org.vmtest.currency.service.CurrencyService;
+import org.vmtest.currency.service.RestClientTemplate;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalUnit;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

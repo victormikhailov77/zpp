@@ -1,7 +1,6 @@
-package org.vmtest.currency.currencylayer;
+package org.vmtest.currency.service.currencylayer;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.vmtest.currency.CurrencyRates;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

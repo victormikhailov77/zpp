@@ -1,6 +1,7 @@
-package org.vmtest.currency;
+package org.vmtest.currency.service;
 
 import org.springframework.stereotype.Service;
+import org.vmtest.currency.model.CurrencyRates;
 
 import java.time.LocalDate;
 import java.util.LinkedHashMap;

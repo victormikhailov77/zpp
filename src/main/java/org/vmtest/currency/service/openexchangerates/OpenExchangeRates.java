@@ -1,7 +1,6 @@
-package org.vmtest.currency.openexchangerates;
+package org.vmtest.currency.service.openexchangerates;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.vmtest.currency.CurrencyRates;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

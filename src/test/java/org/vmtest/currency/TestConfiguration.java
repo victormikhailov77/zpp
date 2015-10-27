@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.client.RestTemplate;
-import org.vmtest.currency.currencylayer.CurrencyLayerRates;
-import org.vmtest.currency.openexchangerates.OpenExchangeRates;
+import org.vmtest.currency.service.currencylayer.CurrencyLayerRates;
+import org.vmtest.currency.service.openexchangerates.OpenExchangeRates;
 
 import java.io.IOException;
 

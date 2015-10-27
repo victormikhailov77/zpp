@@ -1,4 +1,4 @@
-package org.vmtest.currency.currencylayer;
+package org.vmtest.currency.service.currencylayer;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -1,4 +1,4 @@
-package org.vmtest.currency.openexchangerates;
+package org.vmtest.currency.service.openexchangerates;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
-import org.vmtest.currency.CurrencyRates;
-import org.vmtest.currency.CurrencyService;
-import org.vmtest.currency.RestClientTemplate;
+import org.vmtest.currency.model.CurrencyRates;
+import org.vmtest.currency.service.CurrencyService;
+import org.vmtest.currency.service.RestClientTemplate;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

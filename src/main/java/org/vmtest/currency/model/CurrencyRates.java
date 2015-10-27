@@ -1,4 +1,4 @@
-package org.vmtest.currency;
+package org.vmtest.currency.model;
 
 import java.math.BigDecimal;
 import java.util.Map;

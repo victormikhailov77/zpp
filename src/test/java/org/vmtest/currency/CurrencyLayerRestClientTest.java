@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.vmtest.currency.model.CurrencyRates;
+import org.vmtest.currency.service.CurrencyService;
 
 import java.time.LocalDate;
 
