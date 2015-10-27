@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.vmtest.currency.CurrencyRates;
 import org.vmtest.currency.CurrencyService;
-import org.vmtest.web.model.User;
+import org.vmtest.persistence.entity.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

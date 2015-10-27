@@ -1,16 +1,40 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+        >
 <head>
     <style>
         form {
             position: absolute;
-            top: 20%;
-            left: 40%;
+            top: 15%;
+            left: 30%;
             margin-top: -50px;
             margin-left: -50px;
-            width: 300px;
-            height: 100px;
+        }
+
+        input, select {
+            width: 250px;
+        }
+
+        .caption {
+            font-family: arial, helvetica, sans-serif;
+            font-weight: normal;
+            font-size: small;
+            color: darkblue;
+        }
+
+        .hint {
+            font-family: arial, helvetica, sans-serif;
+            font-weight: normal;
+            font-size: small;
+            color: blue;
+        }
+
+        .errortext {
+            font-family: arial, helvetica, sans-serif;
+            font-weight: bold;
+            font-size: small;
+            text-align: left;
+            color: red;
         }
     </style>
 </head>
@@ -21,41 +45,66 @@
             <h2>New user registration</h2>
         </div>
         <div>
-            <table style="width:300px">
+            <table style="width:600px">
                 <tr>
-                    <td>Login</td>
+                    <td class="caption">Login</td>
                     <td><input type="text" th:field="*{userName}" name="username"/></td>
+                    <td class="errortext" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName} ">User Name
+                        Error
+                    </td>
                 </tr>
+
                 <tr>
-                    <td>Password</td>
+                    <td class="caption">Password</td>
                     <td><input type="password" th:field="*{password}" name="password"/></td>
+                    <td class="errortext" th:if="${#fields.hasErrors('password')}" th:errors="*{password} ">Password
+                        Error
+                    </td>
                 </tr>
                 <tr>
-                    <td>First Name</td>
+                    <td class="caption">Verify password</td>
+                    <td><input type="password" th:field="*{verifyPassword}" name="verifyPassword"/></td>
+                    <td class="errortext" th:if="${#fields.hasErrors('verifyPassword')}" th:errors="*{verifyPassword} ">
+                        Password Verify Error
+                    </td>
+                </tr>
+                <tr>
+                    <td class="caption">First Name</td>
                     <td><input type="text" th:field="*{firstName}" name="firstname"/></td>
+                    <td class="errortext" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName} ">First Name
+                        Error
+                    </td>
                 </tr>
                 <tr>
-                    <td>Last Name</td>
+                    <td class="caption">Last Name</td>
                     <td><input type="text" th:field="*{lastName}" name="lastname"/></td>
+                    <td class="errortext" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName} ">Last Name
+                        Error
+                    </td>
                 </tr>
                 <tr>
-                    <td>E-Mail</td>
+                    <td class="caption">E-Mail</td>
                     <td><input type="text" th:field="*{email}" name="email"/></td>
+                    <td class="errortext" th:if="${#fields.hasErrors('email')}" th:errors="*{email} ">Email Error</td>
                 </tr>
                 <tr>
-                    <td>Street address</td>
+                    <td class="caption">Street address</td>
                     <td><input type="text" th:field="*{street}" name="street"/></td>
+                    <td class="errortext" th:if="${#fields.hasErrors('street')}" th:errors="*{street} ">Street Error
+                    </td>
                 </tr>
                 <tr>
-                    <td>City</td>
+                    <td class="caption">City</td>
                     <td><input type="text" th:field="*{city}" name="city"/></td>
+                    <td class="errortext" th:if="${#fields.hasErrors('city')}" th:errors="*{city} ">City Error</td>
                 </tr>
                 <tr>
-                    <td>State/province</td>
+                    <td class="caption">State/province</td>
                     <td><input type="text" th:field="*{state}" name="state"/></td>
+                    <td class="errortext" th:if="${#fields.hasErrors('state')}" th:errors="*{state} ">Email Error</td>
                 </tr>
                 <tr>
-                    <td>Country</td>
+                    <td class="caption">Country</td>
                     <td>
                         <select th:field="*{country}">
                             <option th:each="sopt:${countries.entrySet()}"
@@ -64,19 +113,29 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Post code</td>
+                    <td class="caption">Post code</td>
                     <td><input type="text" th:field="*{postCode}" name="postcode"/></td>
+                    <td class="errortext" th:if="${#fields.hasErrors('postCode')}" th:errors="*{postCode} ">Post Code
+                        Error
+                    </td>
                 </tr>
                 <tr>
-                    <td>Phone number</td>
+                    <td class="caption">Phone number</td>
                     <td><input type="text" th:field="*{phone}" name="phone"/></td>
+                    <td class="errortext" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone} ">Post Code Error
+                    </td>
                 </tr>
 
                 <tr>
-                    <td>Don't have account?</td>
+                    <td class="hint">Don't have account?</td>
                     <td><button type="submit">Register</button></td>
                 </tr>
             </table>
+            <div th:if="${param.error}">
+                <p style="font-family: arial, helvetica, sans-serif; font-weight: bold; color:red">
+                    Invalid username or password.
+                </p>
+            </div>
         </div>
     </form>
 </div>
