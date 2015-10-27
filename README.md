@@ -31,7 +31,9 @@ To run it locally:
 git clone https://github.com/victormikhailov77/zpp.git
 cd zpp
 
-2.start mongodb server instance
+2.get MongoDB and install locally (current prod version 3.0.7)
+https://www.mongodb.org/downloads#production
+start mongodb server instance
 mongod --dbpath=<any_empty_directory with write access>
 
 3.build jar:
