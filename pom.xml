@@ -17,19 +17,26 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>1.2.7.RELEASE</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
-
     </plugins>
 
 
   </build>
 
   <groupId>victor</groupId>
-  <artifactId>test</artifactId>
+  <artifactId>zpp</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>test</name>
+  <name>zpp</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -38,6 +45,12 @@
 
 
   <dependencies>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -133,7 +146,9 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-mongodb</artifactId>
+      <version>1.2.7.RELEASE</version>
     </dependency>
+
 
     <dependency>
       <groupId>org.springframework</groupId>

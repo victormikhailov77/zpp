@@ -6,6 +6,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.client.RestTemplate;
 import org.vmtest.currency.service.currencylayer.CurrencyLayerRates;
 import org.vmtest.currency.service.openexchangerates.OpenExchangeRates;
+import org.vmtest.persistence.repository.UserRepository;
 
 import java.io.IOException;
 
@@ -245,6 +246,8 @@ public class TestConfiguration {
 
         return template;
     }
-
-
+    @Bean
+    static UserRepository getRepository() {
+            return mock(UserRepository.class);
+    }
 }

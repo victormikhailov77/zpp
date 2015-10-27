@@ -11,7 +11,7 @@ import org.vmtest.persistence.repository.UserRepository;
 @SpringBootApplication
 @EnableWebMvc
 @EnableMongoRepositories
-public class App implements CommandLineRunner {
+public class App {
 
     @Autowired
     private UserRepository repository;
@@ -20,10 +20,5 @@ public class App implements CommandLineRunner {
         SpringApplication.run(App.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-
-
-    }
 }
 
