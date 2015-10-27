@@ -28,7 +28,7 @@ public class CurrencyViewController {
     private final String[] currencies = new String[] {"GBP","EUR","CHF","SEK","NOK","PLN","CZK","DKK","HUF","RON"};
 
     @Autowired
-    @Qualifier("currencyLayerRestClient")
+    @Qualifier("cachedCurrencyService")
     CurrencyService service;
 
     @RequestMapping(method = RequestMethod.GET)

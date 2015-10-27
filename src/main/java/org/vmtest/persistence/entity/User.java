@@ -18,6 +18,10 @@ import java.math.BigInteger;
 // This is violation of SRP, I know :-)
 public class User implements Serializable {
 
+    private static final String NAME_REGEX = "[a-zA-z]+([ '-][a-zA-Z]+)*";
+
+    private static final String INTERNATIONAL_PHONE_REGEX = "^\\+(?:[0-9] ?){6,14}[0-9]$";
+
     @Id
     private BigInteger id;
 
@@ -36,12 +40,12 @@ public class User implements Serializable {
 
     @NotEmpty
     @Size(min = 1, max = 60)
-    @Pattern(regexp = "[a-zA-z]+([ '-][a-zA-Z]+)*", message = "Only letters, space and dash allowed in first name")
+    @Pattern(regexp = NAME_REGEX, message = "Only letters, space and dash allowed in first name")
     private String firstName;
 
     @NotEmpty
     @Size(min = 1, max = 60)
-    @Pattern(regexp = "[a-zA-z]+([ '-][a-zA-Z]+)*", message = "Only letters, space and dash allowed in last name")
+    @Pattern(regexp = NAME_REGEX, message = "Only letters, space and dash allowed in last name")
     private String lastName;
 
     @NotEmpty
@@ -69,7 +73,7 @@ public class User implements Serializable {
     private String postCode;
 
     @NotEmpty
-    @Pattern(regexp = "^\\+(?:[0-9] ?){6,14}[0-9]$", message = "Phone number must be in international format +123456789, +12 3456789 or +123 456 789 000")
+    @Pattern(regexp = INTERNATIONAL_PHONE_REGEX, message = "Phone number must be in international format +123456789, +12 3456789 or +123 456 789 000")
     private String phone;
 
     @AssertTrue(message = "password and verify password must be the same")

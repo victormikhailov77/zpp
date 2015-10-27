@@ -29,6 +29,6 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("User with name " + newUser.getUserName() + " already exist");
         }
         repository.save(newUser);
-        logger.info("New user created :" + newUser.toString());
+        logger.debug("New user created :" + newUser.toString());
     }
 }

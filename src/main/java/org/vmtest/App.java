@@ -13,9 +13,6 @@ import org.vmtest.persistence.repository.UserRepository;
 @EnableMongoRepositories
 public class App {
 
-    @Autowired
-    private UserRepository repository;
-
     public static void main(String[] args) throws Throwable {
         SpringApplication.run(App.class, args);
     }

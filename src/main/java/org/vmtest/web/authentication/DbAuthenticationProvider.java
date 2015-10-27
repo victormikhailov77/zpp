@@ -41,12 +41,15 @@ public class DbAuthenticationProvider extends AbstractUserDetailsAuthenticationP
                 Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
                 authorities.add(new GrantedAuthorityImpl("USER"));
                 loadedUser = new User(dbUser.getUserName(), dbUser.getPassword(), authorities);
+                logger.debug("User " + userName + " successfully registered");
             }
         } catch (Exception e) {
+            logger.error(e);
             throw new InternalAuthenticationServiceException(e.getMessage(), e);
         }
 
         if (loadedUser == null) {
+            logger.error("User " + userName + " supplied bad credentials");
             throw new BadCredentialsException(
                     "Password mismatch");
         }
