@@ -3,17 +3,13 @@ package org.vmtest.repository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.vmtest.TestConfiguration;
 import org.vmtest.currency.model.CurrencyRates;
 import org.vmtest.persistence.entity.CurrencyHistory;
 import org.vmtest.persistence.repository.CurrencyHistoryRepository;
 import org.vmtest.persistence.service.CurrencyHistoryService;
+import org.vmtest.persistence.service.CurrencyHistoryServiceImpl;
 
 import java.time.LocalDate;
 
@@ -22,8 +18,7 @@ import static org.mockito.Mockito.*;
 /**
  * Created by victor on 27.10.15.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfiguration.class, loader = AnnotationConfigContextLoader.class)
+@RunWith(MockitoJUnitRunner.class)
 public class CurrencyHistoryServiceTest {
 
     private final String sourceCurrency = "USD";
@@ -31,9 +26,7 @@ public class CurrencyHistoryServiceTest {
 
     private CurrencyHistory history = new CurrencyHistory(todayDate, sourceCurrency, mock(CurrencyRates.class));
 
-    @Autowired
-    @Qualifier("currencyHistoryServiceImpl")
-    private CurrencyHistoryService service;
+    private CurrencyHistoryService service = new CurrencyHistoryServiceImpl();
 
     private CurrencyHistoryRepository repository = mock(CurrencyHistoryRepository.class);
 

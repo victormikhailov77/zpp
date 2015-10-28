@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.RestTemplate;
-import org.vmtest.TestConfiguration;
+import org.vmtest.TestSuiteConfiguration;
 import org.vmtest.currency.model.CurrencyRates;
 import org.vmtest.currency.service.CurrencyService;
 import org.vmtest.currency.service.openexchangerates.OpenExchangeRates;
@@ -27,7 +27,7 @@ import static org.mockito.Mockito.when;
  * Created by victor on 23.10.15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfiguration.class, loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = TestSuiteConfiguration.class, loader = AnnotationConfigContextLoader.class)
 public class OpenExchangeRestClientTest {
 
         private static final String openExchangeUrl = "https://openexchangerates.org/api/latest.json?app_id=14b7fdd1aed0454c9fd7ff6b31a389b1&base=USD";

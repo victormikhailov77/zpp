@@ -21,7 +21,7 @@ import java.util.Map;
  * Created by victor on 26.10.15.
  */
 @Controller
-@RequestMapping("/currencyview")
+@RequestMapping(value = {"/", "/currencyview"})
 public class CurrencyViewController {
 
     private final String source = "USD";

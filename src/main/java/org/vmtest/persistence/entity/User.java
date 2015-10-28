@@ -3,6 +3,7 @@ package org.vmtest.persistence.entity;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import javax.validation.constraints.AssertTrue;
@@ -36,6 +37,7 @@ public class User implements Serializable {
 
     @NotEmpty
     @Size(min = 8, max = 30)
+    @Transient
     private String verifyPassword;
 
     @NotEmpty
@@ -191,7 +193,6 @@ public class User implements Serializable {
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                ", verifyPassword='" + verifyPassword + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

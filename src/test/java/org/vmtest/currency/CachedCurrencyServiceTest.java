@@ -3,12 +3,8 @@ package org.vmtest.currency;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.vmtest.TestConfiguration;
 import org.vmtest.currency.model.CurrencyRates;
 import org.vmtest.currency.service.CachedCurrencyService;
 import org.vmtest.currency.service.CurrencyService;
@@ -22,18 +18,16 @@ import static org.mockito.Mockito.*;
 /**
  * Created by victor on 27.10.15.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfiguration.class, loader = AnnotationConfigContextLoader.class)
+@RunWith(MockitoJUnitRunner.class)
 public class CachedCurrencyServiceTest {
 
     private final String sourceCurrency = "USD";
 
     private final String[] destinationCurrencies = new String[]{"GBP", "EUR", "CHF"};
 
-    private final LocalDate todayDate = LocalDate.of(2015, 10, 27);
+    private final LocalDate todayDate = LocalDate.of(2015, 10, 28);
 
-    @Autowired
-    private CachedCurrencyService cacheService;
+    private CachedCurrencyService cacheService = new CachedCurrencyService();
 
     private CurrencyHistoryService historyService = mock(CurrencyHistoryService.class);
 

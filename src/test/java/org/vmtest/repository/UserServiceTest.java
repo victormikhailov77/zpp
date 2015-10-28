@@ -3,16 +3,12 @@ package org.vmtest.repository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.vmtest.TestConfiguration;
 import org.vmtest.persistence.entity.User;
 import org.vmtest.persistence.repository.UserRepository;
 import org.vmtest.persistence.service.UserService;
+import org.vmtest.persistence.service.UserServiceImpl;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -20,17 +16,14 @@ import static org.mockito.Mockito.*;
 /**
  * Created by victor on 27.10.15.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfiguration.class, loader = AnnotationConfigContextLoader.class)
+@RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
     private final String testLogin = "testUser";
 
     private final String testPassword = "testPassword";
 
-    @Autowired
-    @Qualifier("userServiceImpl")
-    private UserService userService;
+    private UserService userService = new UserServiceImpl();
 
     private UserRepository repository = mock(UserRepository.class);
 

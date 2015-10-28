@@ -51,18 +51,19 @@ public class RegistrationController {
         }
 
         userService.addNewUser(user);
-        //model.addAttribute("success", "Dear "+ user.getFirstName()+" , your Registration completed successfully");
+        model.addAttribute("success", "Dear " + user.getFirstName() + " , your Registration completed successfully");
         return "redirect:/login";
     }
 
     @ModelAttribute("countries")
     public Map<String, String> initializeCountries() {
 
+        // Populate dropdown with list of countries, sorted by display name
+        // NOTE: country names are locale-specific
         Map<String, String> countries = new TreeMap<>();
-
         String[] locales = Locale.getISOCountries();
         for (String countryCode : locales) {
-            Locale obj = new Locale("", countryCode);
+            Locale obj = new Locale("EN-US", countryCode);
             countries.put(obj.getDisplayCountry(), obj.getCountry());
         }
 
