@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,15 +43,27 @@ public class RegistrationController {
     @RequestMapping(method = RequestMethod.POST)
     public String saveRegistration(@Valid User user, BindingResult result, ModelMap model,
                                    final RedirectAttributes redirectAttributes) {
-
-
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("errors", result);
             redirectAttributes.addFlashAttribute("user", user);
             return "register";
         }
 
-        userService.addNewUser(user);
+        if (!user.isPasswordVerified()) {
+            result.addError(new ObjectError("user", "Your password and verification password do not match"));
+            redirectAttributes.addFlashAttribute("errors", result);
+            redirectAttributes.addFlashAttribute("user", user);
+            return "register";
+        }
+
+        try {
+            userService.addNewUser(user);
+        } catch (RuntimeException e) {
+            result.addError(new ObjectError("user", e.getMessage()));
+            redirectAttributes.addFlashAttribute("errors", result);
+            redirectAttributes.addFlashAttribute("user", user);
+            return "register";
+        }
         model.addAttribute("success", "Dear " + user.getFirstName() + " , your Registration completed successfully");
         return "redirect:/login";
     }

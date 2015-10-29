@@ -12,5 +12,7 @@ import java.time.LocalDate;
 public interface CurrencyHistoryService {
     public void addHistory(CurrencyHistory newHistory);
 
+    public void updateHistory(CurrencyHistory newHistory);
+
     public CurrencyHistory findHistoryByDateAndCurrency(LocalDate date, String currency);
 }

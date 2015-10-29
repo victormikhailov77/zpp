@@ -131,10 +131,10 @@
                     <td><button type="submit">Register</button></td>
                 </tr>
             </table>
-            <div th:if="${param.error}">
-                <p style="font-family: arial, helvetica, sans-serif; font-weight: bold; color:red">
-                    Invalid username or password.
-                </p>
+            <div>
+                <ul class="errortext" th:if="${#fields.hasErrors('global')}">
+                    <li th:each="err : ${#fields.errors('global')}" th:text="${err}">Input is incorrect</li>
+                </ul>
             </div>
         </div>
     </form>

@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -78,8 +77,7 @@ public class User implements Serializable {
     @Pattern(regexp = INTERNATIONAL_PHONE_REGEX, message = "Phone number must be in international format +123456789, +12 3456789 or +123 456 789 000")
     private String phone;
 
-    @AssertTrue(message = "password and verify password must be the same")
-    private boolean isValid() {
+    public boolean isPasswordVerified() {
         return this.password.equals(this.verifyPassword);
     }
 

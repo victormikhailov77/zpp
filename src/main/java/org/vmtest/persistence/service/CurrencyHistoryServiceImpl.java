@@ -23,6 +23,11 @@ public class CurrencyHistoryServiceImpl implements CurrencyHistoryService {
     }
 
     @Override
+    public void updateHistory(CurrencyHistory newHistory) {
+        repository.save(newHistory);
+    }
+
+    @Override
     public CurrencyHistory findHistoryByDateAndCurrency(LocalDate date, String currency) {
         List<CurrencyHistory> history = repository.findHistoryByDateAndCurrency(date, currency);
 

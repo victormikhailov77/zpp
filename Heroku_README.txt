@@ -26,7 +26,7 @@ git remote add heroku https://git.heroku.com/zpdevtest.git
 and again:
 git push heroku master
 
-4. Confugiring application:
+4. Configuring application:
 
 heroku ps:scale web=1
 

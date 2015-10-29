@@ -12,7 +12,11 @@ import org.vmtest.persistence.entity.CurrencyHistory;
 import org.vmtest.persistence.service.CurrencyHistoryService;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**
@@ -25,7 +29,7 @@ public class CachedCurrencyServiceTest {
 
     private final String[] destinationCurrencies = new String[]{"GBP", "EUR", "CHF"};
 
-    private final LocalDate todayDate = LocalDate.of(2015, 10, 28);
+    private final LocalDate todayDate = LocalDate.now();
 
     private CachedCurrencyService cacheService = new CachedCurrencyService();
 
@@ -57,15 +61,33 @@ public class CachedCurrencyServiceTest {
     }
 
     @Test
-    public void shouldReturnCachedResultWhenCalledSecondTime() {
+    public void shouldReachCurrencyServiceAndUpdateCacheWhenCalledSecondTime() {
         when(currencyService.getExchangeRates(sourceCurrency, destinationCurrencies)).thenReturn(expectedRates);
         when(historyService.findHistoryByDateAndCurrency(todayDate, sourceCurrency)).thenReturn(historyRecord);
 
         CurrencyRates result = cacheService.getExchangeRates(sourceCurrency, destinationCurrencies);
 
         verify(historyService, times(1)).findHistoryByDateAndCurrency(todayDate, sourceCurrency);
+        verify(currencyService, times(1)).getExchangeRates(sourceCurrency, destinationCurrencies);
+        verify(historyService, times(1)).updateHistory(historyRecord);
+    }
+
+    @Test
+    public void shouldReturnCachedResultWhenCalledSecondTimeAndFreshCachedDataAvailable() {
+        LocalDateTime todayTime = LocalDateTime.now();
+        LocalDateTime lastCachedTime = todayTime.minusMinutes(5);
+        CurrencyRates cachedRates = new CurrencyRates();
+        cachedRates.setSource(sourceCurrency);
+        cachedRates.setTimestamp(lastCachedTime.toEpochSecond(ZoneOffset.UTC));
+        CurrencyHistory cachedHistoryRecord = new CurrencyHistory(lastCachedTime.toLocalDate(), sourceCurrency, cachedRates);
+        when(currencyService.getExchangeRates(sourceCurrency, destinationCurrencies)).thenReturn(cachedRates);
+        when(historyService.findHistoryByDateAndCurrency(todayDate, sourceCurrency)).thenReturn(cachedHistoryRecord);
+
+        CurrencyRates result = cacheService.getExchangeRates(sourceCurrency, destinationCurrencies);
+
+        verify(historyService, times(1)).findHistoryByDateAndCurrency(todayDate, sourceCurrency);
         verify(currencyService, times(0)).getExchangeRates(sourceCurrency, destinationCurrencies);
-        verify(historyService, times(0)).addHistory(historyRecord);
+        verify(historyService, times(0)).updateHistory(historyRecord);
     }
 
     @Test
@@ -89,6 +111,12 @@ public class CachedCurrencyServiceTest {
         verify(historyService, times(1)).findHistoryByDateAndCurrency(todayDate, sourceCurrency);
         verify(currencyService, times(0)).getExchangeRates(sourceCurrency, destinationCurrencies, todayDate);
         verify(historyService, times(0)).addHistory(historyRecord);
+    }
+
+    @Test
+    public void shouldExecuteCurrencyService10Times() {
+        Map<LocalDate, CurrencyRates> result = cacheService.getExchangeRatesHistoryBehindDate(sourceCurrency, destinationCurrencies, todayDate, 10);
+        assertEquals(10, result.size());
     }
 
 }
