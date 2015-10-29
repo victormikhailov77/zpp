@@ -25,13 +25,19 @@ External APIs:
 -Currencylayer.com REST API 
 -Openexchange.org REST API
 
+Use local database - uncomment line in application.properties
+#spring.data.mongodb.uri = mongodb://localhost:27017/local
+
+Use server database - uncomment line in application.properties (default)
+spring.data.mongodb.uri = mongodb://user:passsword@ds045054.mongolab.com:45054/viper
+
 
 To run it locally:
 1.Get sources to local machine
 git clone https://github.com/victormikhailov77/zpp.git
 cd zpp
 
-2.get MongoDB and install locally (current prod version 3.0.7)
+2. Optional - get MongoDB and install locally (current prod version 3.0.7)
 https://www.mongodb.org/downloads#production
 start mongodb server instance
 mongod --dbpath=<any_empty_directory with write access>
@@ -69,7 +75,7 @@ click register button
 Expected: redirected to
 http://localhost:8080/register
 
-4.Registration form doesn't allow to sumbit empty fields, or some garbage
+4.Registration form doesn't allow to submit empty fields, or some garbage
 login - 6 to 30 characters
 password, verify password - 8 to 30 characters
 first name, last name - allowed only letters, space and dash characters, 1 to 60 chars
