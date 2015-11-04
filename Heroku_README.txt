@@ -43,3 +43,6 @@ heroku logs --tail
 Stop the app:
 
 heroku ps:scale web=0
+
+check availability:
+zpdevtest.herokuapp.com
