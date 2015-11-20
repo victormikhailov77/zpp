@@ -57,6 +57,9 @@ public class User implements Serializable {
     @Size(min = 2, max = 50)
     private String street;
 
+    @Size(min = 0, max = 50)
+    private String streetNumber;
+
     @NotEmpty
     @Size(min = 2, max = 50)
     private String city;
@@ -143,6 +146,14 @@ public class User implements Serializable {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
     }
 
     public String getCity() {
