@@ -9,11 +9,11 @@
         </layout>
     </appender>
 
-    <logger name="org.springframework" level="debug" additivity="false">
+    <logger name="org.springframework" level="info" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <logger name="org.vmtest.currency" level="debug" additivity="false">
+    <logger name="org.vmtest.currency" level="info" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
 
