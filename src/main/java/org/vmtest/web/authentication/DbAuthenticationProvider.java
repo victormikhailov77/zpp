@@ -36,6 +36,10 @@ public class DbAuthenticationProvider extends AbstractUserDetailsAuthenticationP
 
         try {
             org.vmtest.persistence.entity.User dbUser = userService.findUserByLoginName(userName);
+            if (dbUser == null) {
+                throw new BadCredentialsException(
+                        "User '" + userName + "' is unknown");
+            }
             String password = (String) usernamePasswordAuthenticationToken.getCredentials();
             if (dbUser.getPassword().equals(password)) {
                 Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
@@ -43,7 +47,13 @@ public class DbAuthenticationProvider extends AbstractUserDetailsAuthenticationP
                 loadedUser = new User(dbUser.getUserName(), dbUser.getPassword(), authorities);
                 logger.debug("User " + userName + " successfully registered");
             }
-        } catch (Exception e) {
+
+        }
+        catch (BadCredentialsException e) {
+            logger.error(e);
+            throw e;
+        }
+        catch (Exception e) {
             logger.error(e);
             throw new InternalAuthenticationServiceException(e.getMessage(), e);
         }
